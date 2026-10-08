@@ -1,0 +1,23 @@
+<div class="card shadow-sm border-0 p-4 mb-4 bg-light">
+  <div class="row g-3 justify-content-center">
+    
+    <!-- Filtro por Oficio -->
+    <div class="col-md-5">
+      <label class="form-label fw-semibold text-secondary small">Filtrar por Oficio:</label>
+      <select [(ngModel)]="filtroOficio" (change)="onFiltroChange()" class="form-select">
+        <option value="">Todos los oficios</option>
+        <option *ngFor="let o of oficios" [value]="o.id">{{ o.nombre }}</option>
+      </select>
+    </div>
+
+    <!-- Filtro por Ubicación -->
+    <div class="col-md-5">
+      <label class="form-label fw-semibold text-secondary small">Filtrar por Localidad:</label>
+      <select [(ngModel)]="filtroUbicacion" (change)="onFiltroChange()" class="form-select">
+        <option value="">Todas las localidades</option>
+        <option *ngFor="let u of ubicaciones" [value]="u.id">{{ u.nombre }}</option>
+      </select>
+    </div>
+
+  </div>
+</div>

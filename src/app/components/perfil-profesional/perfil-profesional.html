@@ -1,0 +1,56 @@
+<div class="container py-5" style="max-width: 800px;">
+  
+  <!-- Botón para volver atrás -->
+  <a routerLink="/" class="btn btn-outline-secondary btn-sm mb-4">
+    ← Volver al inicio
+  </a>
+
+  <!-- Indicador de carga -->
+  <div *ngIf="cargando" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <!-- Si se encontró el profesional -->
+  <div *ngIf="!cargando && profesional" class="card shadow border-0 p-4 bg-white rounded-4">
+    <div class="row align-items-center">
+      
+      <div class="col-md-8">
+        <h2 class="text-primary fw-bold mb-1">
+          {{ profesional.nombre }} {{ profesional.apellido }}
+        </h2>
+        <p class="mb-2">
+          <span class="badge bg-info text-dark fs-6">{{ profesional.oficio_nombre }}</span>
+          <span class="badge bg-success ms-2" *ngIf="profesional.verificado">✔ Verificado</span>
+        </p>
+        <p class="text-muted mb-1"><strong>Ubicación:</strong> {{ profesional.ubicacion_nombre }}</p>
+        <p class="text-muted mb-3"><strong>Años de experiencia:</strong> {{ profesional.experiencia_anios }} años</p>
+      </div>
+
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <a href="https://wa.me/{{ profesional.telefono }}" target="_blank" class="btn btn-success btn-lg w-100 shadow-sm">
+          💬 Contactar por WhatsApp
+        </a>
+      </div>
+
+    </div>
+
+    <hr class="my-4">
+
+    <!-- Descripción completa -->
+    <div>
+      <h5 class="fw-bold text-dark">Sobre mí / Mis servicios</h5>
+      <p class="text-secondary" style="line-height: 1.6;">
+        {{ profesional.descripcion }}
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Si no existe el profesional -->
+  <div *ngIf="!cargando && !profesional" class="alert alert-warning text-center">
+    No se encontró información para este profesional o el servidor no respondió.
+  </div>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="container my-5">
+  <h2 class="mb-4 text-center fw-bold">Nuestros Profesionales Disponibles</h2>
+  
+  <div class="row g-4">
+    <!-- Repetimos la tarjeta por cada profesional usando *ngFor -->
+    <div class="col-md-4" *ngFor="let prof of profesionales">
+      <!-- Le pasamos el objeto profesional mediante un @input (ajusta según cómo reciba los datos tu tarjeta) -->
+      <app-tarjeta-profesional [profesional]="prof"></app-tarjeta-profesional>
+    </div>
+  </div>
+</div>

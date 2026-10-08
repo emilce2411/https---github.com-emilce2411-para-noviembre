@@ -1,0 +1,247 @@
+<section>
+
+<article class="container my-5 servimatch-info">
+
+  <div class="row align-items-center">
+
+    <div class="col-lg-6">
+
+      <h2 class="fw-bold mb-4">
+        ¿Ofrecés tus servicios?
+        <br>
+        Unite a ServiMatch y conectá con clientes que necesitan tu ayuda.
+      </h2>
+
+      <p class="mb-4">
+        ServiMatch te ayuda a hacer crecer tu trabajo, conseguir nuevos clientes y mostrar tus servicios a personas que realmente los necesitan.
+      </p>
+
+      <ul class="list-unstyled">
+
+        <li>
+          ✔ Recibí solicitudes de clientes interesados.
+        </li>
+
+        <li>
+          ✔ Coordiná trabajos y presupuestos de forma directa.
+        </li>
+
+        <li>
+          ✔ Mostrá tus calificaciones para generar confianza.
+        </li>
+
+        <li>
+          ✔ Aumentá tu visibilidad y oportunidades laborales.
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="col-lg-6 text-center">
+
+        <img
+          [src]="imagenPrincipal.src"
+          class="img-fluid"
+          [alt]="imagenPrincipal.alt"
+        > 
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<article class="beneficios-section container py-5">
+
+  <div class="text-center mb-5">
+
+    <h2 class="fw-bold display-5">
+      ¿Por qué elegir ServiMatch?
+    </h2>
+
+    <p class="fs-5 text-secondary mt-3">
+      Todo lo que necesitás para encontrar profesionales confiables,
+      cerca tuyo y sin complicaciones.
+    </p>
+
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+  @for (beneficio of beneficios; track beneficio.titulo) {
+  <div class="col">
+
+    <div class="card text-bg-dark border-0 custom-card">
+
+      <img
+        [src]="beneficio.imagen"
+        class="card-img custom-img"
+        [alt]="beneficio.alt"
+      >
+
+      <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center text-center">
+
+        <h3 class="card-title fw-bold">
+          {{ beneficio.titulo }}
+        </h3>
+
+        <p class="card-text">
+          {{ beneficio.descripcion }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+}
+
+  </div>
+
+</article>
+
+
+<article class="container py-5 registro-requisitos">
+
+  <div class="text-center mb-5">
+
+    <h2 class="fw-bold display-5">
+      Pasos para verificar tu perfil
+    </h2>
+
+    <p class="fs-5 text-secondary mt-3">
+      Completá estos requisitos para generar más confianza y acceder a mayores oportunidades.
+    </p>
+
+  </div>
+
+  <div class="row g-3">
+
+  @for (requisito of requisitos; track requisito.titulo) {
+    <div class="col-12">
+
+      <div class="card rounded-4 shadow-sm border-0">
+
+        <div class="card-body d-flex align-items-center justify-content-between">
+
+          <div class="d-flex align-items-center gap-3">
+
+            <div class="icon-box">
+              {{ requisito.icono }}
+            </div>
+
+            <div>
+
+              <h5 class="card-title mb-1">
+                {{ requisito.titulo }}
+              </h5>
+
+              <p class="card-text mb-0 text-secondary">
+                {{ requisito.descripcion }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  }
+
+  </div>
+
+</article>
+
+
+<article class="container py-5">
+
+  <div class="card border-0 shadow-sm rounded-5 registro-card">
+
+    <div class="card-body text-center p-5">
+
+      <h2 class="fw-bold mb-4">
+        Tu próximo trabajo comienza acá
+      </h2>
+
+      <p class="fs-4 text-white mb-5">
+        Registrate y conectate con personas que necesitan tus servicios.
+      </p>
+
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+        <a routerLink="/registro" class="btn btn-primary btn-lg">
+          Registrarme
+        </a>
+
+        <a routerLink="/login" class="btn btn-primary btn-lg">
+          Iniciar sesión
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<article class="container py-5 preguntas-frecuentes">
+
+  <div class="text-center mb-5">
+
+    <h2 class="fw-bold display-5">
+      Preguntas Frecuentes
+    </h2>
+
+    <p class="fs-5 text-secondary mt-3">
+      Resolvé tus dudas más comunes sobre el funcionamiento de ServiMatch y nuestros servicios.
+    </p>
+
+  </div>
+
+  <div class="accordion" id="accordionFAQ">
+
+  @for (pregunta of preguntasFrecuentes; track pregunta.pregunta; let i = $index) {
+
+    <div class="accordion-item">
+
+      <h2 class="accordion-header">
+
+        <button
+          class="accordion-button collapsed fw-bold"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#faq' + i">
+
+          {{ pregunta.pregunta }}
+
+        </button>
+
+      </h2>
+
+      <div
+        [id]="'faq' + i"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFAQ">
+
+        <div class="accordion-body">
+          {{ pregunta.respuesta }}
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+  </div>
+
+</article>
+
+</section>
