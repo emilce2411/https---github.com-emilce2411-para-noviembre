@@ -15,7 +15,14 @@
   <!-- Si se encontró el profesional -->
   <div *ngIf="!cargando && profesional" class="card shadow border-0 p-4 bg-white rounded-4">
     <div class="row align-items-center">
-      
+      <div class="col-12 text-center mb-4" *ngIf="profesional.imagen_portfolio">
+        <img
+          [src]="normalizarUrlImagen(profesional.imagen_portfolio)"
+          [alt]="'Foto de ' + profesional.nombre + ' ' + profesional.apellido"
+          class="detail-profile-photo"
+        >
+      </div>
+
       <div class="col-md-8">
         <h2 class="text-primary fw-bold mb-1">
           {{ profesional.nombre }} {{ profesional.apellido }}
@@ -45,6 +52,34 @@
         {{ profesional.descripcion }}
       </p>
     </div>
+
+    <section *ngIf="profesional.fotos_trabajo?.length" class="work-gallery mt-4" aria-label="Galería de trabajos">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="fw-bold text-dark mb-0">Trabajos realizados</h5>
+        <span class="text-muted small">{{ indiceFotoTrabajo + 1 }} / {{ profesional.fotos_trabajo.length }}</span>
+      </div>
+      <div class="work-carousel">
+        <img
+          [src]="normalizarUrlImagen(profesional.fotos_trabajo[indiceFotoTrabajo].imagen)"
+          [alt]="'Trabajo de ' + profesional.nombre + ' ' + profesional.apellido"
+          class="work-photo"
+        >
+        <button
+          *ngIf="profesional.fotos_trabajo.length > 1"
+          type="button"
+          class="carousel-control previous"
+          aria-label="Ver foto anterior"
+          (click)="cambiarFotoTrabajo(-1)"
+        >‹</button>
+        <button
+          *ngIf="profesional.fotos_trabajo.length > 1"
+          type="button"
+          class="carousel-control next"
+          aria-label="Ver foto siguiente"
+          (click)="cambiarFotoTrabajo(1)"
+        >›</button>
+      </div>
+    </section>
 
   </div>
 

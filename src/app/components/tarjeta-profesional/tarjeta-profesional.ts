@@ -11,4 +11,8 @@ import { RouterLink } from '@angular/router'; // <--- Importar
 })
 export class TarjetaProfesionalComponent {
   @Input() profesional: any;
+
+  normalizarUrlImagen(url: string): string {
+    return url.startsWith('http') ? url : `http://127.0.0.1:8000${url}`;
+  }
 }

@@ -1,0 +1,102 @@
+<div class="container my-5" style="max-width: 700px;">
+  <div class="card shadow-sm border-0 p-4">
+    <h2 class="text-center mb-4 fw-bold text-primary">Mi Panel de Profesional</h2>
+
+    <div *ngIf="cargando" class="text-center py-4">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="text-muted mt-2">Cargando tus datos...</p>
+    </div>
+
+    <div *ngIf="!cargando && errorPerfil" class="alert alert-warning text-center" role="alert">
+      <p class="mb-3">{{ errorPerfil }}</p>
+      <button type="button" class="btn btn-outline-primary" (click)="cargarPerfil()">Reintentar</button>
+    </div>
+
+    <form *ngIf="!errorPerfil" (ngSubmit)="guardarCambios()">
+      <div class="text-center mb-4">
+        <img
+          *ngIf="profesional.imagen_portfolio"
+          [src]="profesional.imagen_portfolio.startsWith('http') ? profesional.imagen_portfolio : 'http://127.0.0.1:8000' + profesional.imagen_portfolio"
+          alt="Foto del profesional"
+          class="rounded-circle border shadow-sm"
+          style="width: 120px; height: 120px; object-fit: cover;"
+        >
+        <div class="mt-3">
+          <label class="form-label fw-semibold">Actualizar foto</label>
+          <input type="file" class="form-control" accept="image/*" (change)="onFotoSeleccionada($event)">
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Fotos de tus trabajos</label>
+        <input type="file" class="form-control" accept="image/*" multiple (change)="onFotosTrabajoSeleccionadas($event)">
+        <small class="text-muted">Hasta 10 fotos por carga, máximo 5 MB cada una.</small>
+        <div *ngIf="fotosTrabajoSeleccionadas.length" class="small mt-2">
+          {{ fotosTrabajoSeleccionadas.length }} foto(s) lista(s) para subir
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="profesional.nombre" name="nombre" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="profesional.apellido" name="apellido" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Teléfono / WhatsApp</label>
+          <input type="text" class="form-control" [(ngModel)]="profesional.telefono" name="telefono" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Correo electrónico</label>
+          <input type="email" class="form-control" [(ngModel)]="profesional.email" name="email" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Oficio</label>
+          <select class="form-select" [(ngModel)]="profesional.oficio" name="oficio" required>
+            <option *ngFor="let oficio of oficios" [ngValue]="oficio.id">{{ oficio.nombre }}</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Localidad</label>
+          <select class="form-select" [(ngModel)]="profesional.ubicacion" name="ubicacion" required>
+            <option *ngFor="let ubicacion of ubicaciones" [ngValue]="ubicacion.id">{{ ubicacion.nombre }}, {{ ubicacion.provincia }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Años de Experiencia</label>
+        <input type="number" class="form-control" [(ngModel)]="profesional.experiencia_anios" name="experiencia_anios" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Descripción de tu Servicio</label>
+        <textarea class="form-control" rows="4" [(ngModel)]="profesional.descripcion" name="descripcion" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Estado de Verificación</label>
+        <div>
+          <span class="badge bg-success" *ngIf="profesional.verificado">✔ Perfil Verificado</span>
+          <span class="badge bg-warning text-dark" *ngIf="!profesional.verificado">⏳ Pendiente de Verificación por el Administrador</span>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2 mt-3">
+        <button type="submit" class="btn btn-success py-2 fw-bold">Guardar Cambios</button>
+        <button type="button" class="btn btn-outline-danger py-2 fw-bold" (click)="cerrarSesion()">
+          Cerrar sesión
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

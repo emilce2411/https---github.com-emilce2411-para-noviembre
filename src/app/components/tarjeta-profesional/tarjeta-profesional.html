@@ -1,7 +1,13 @@
 <div class="card h-100 shadow-sm border-0 p-3 bg-white">
   <div class="card-body d-flex flex-column justify-content-between">
-    
     <div>
+      <img
+        *ngIf="profesional.imagen_portfolio"
+        [src]="normalizarUrlImagen(profesional.imagen_portfolio)"
+        [alt]="'Foto de ' + profesional.nombre + ' ' + profesional.apellido"
+        class="professional-photo mb-3"
+      >
+
       <!-- Nombre y Apellido -->
       <h5 class="card-title text-primary fw-bold mb-2">
         {{ profesional.nombre }} {{ profesional.apellido }}
@@ -25,6 +31,7 @@
       <p class="card-text text-secondary small mt-2">
         {{ profesional.descripcion }}
       </p>
+
     </div>
     
     <!-- Footer de la tarjeta con estado y botón de WhatsApp -->
@@ -39,10 +46,8 @@
       </a>
     </div>
 
-    <!-- Botón con RouterLink -->
-      <a [routerLink]="['/profesional', profesional.id]" class="btn btn-outline-primary btn-sm">
-        Ver Perfil
-      </a>
-
+    <a [routerLink]="['/profesional', profesional.id]" class="btn btn-outline-primary btn-sm mt-3">
+      Ver Perfil
+    </a>
   </div>
 </div>

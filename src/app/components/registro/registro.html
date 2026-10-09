@@ -1,0 +1,69 @@
+<div class="container my-5" style="max-width: 600px;">
+  <div class="card shadow-sm border-0 p-4">
+    <h2 class="text-center mb-4 fw-bold text-primary">Registro de Profesional</h2>
+    
+    <form (ngSubmit)="enviarRegistro()">
+      <div class="mb-3">
+        <label class="form-label">Nombre de Usuario (para el login)</label>
+        <input type="text" class="form-control" [(ngModel)]="modelo.username" name="username" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control" [(ngModel)]="modelo.password" name="password" required>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="modelo.nombre" name="nombre" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="modelo.apellido" name="apellido" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Teléfono / WhatsApp</label>
+          <input type="text" class="form-control" [(ngModel)]="modelo.telefono" name="telefono" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Correo Electrónico</label>
+          <input type="email" class="form-control" [(ngModel)]="modelo.email" name="email" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Oficio</label>
+          <select class="form-select" [(ngModel)]="modelo.oficio" name="oficio" required>
+            <option *ngFor="let o of oficios" [value]="o.id">{{ o.nombre }}</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Localidad</label>
+          <select class="form-select" [(ngModel)]="modelo.ubicacion" name="ubicacion" required>
+            <option *ngFor="let u of ubicaciones" [value]="u.id">{{ u.nombre }}, {{ u.provincia }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Años de Experiencia</label>
+        <input type="number" class="form-control" [(ngModel)]="modelo.experiencia_anios" name="experiencia_anios" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Descripción de tu Servicio</label>
+        <textarea class="form-control" rows="3" [(ngModel)]="modelo.descripcion" name="descripcion" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Registrarse</button>
+      <li class="nav-item">
+          <a class="nav-link btn btn-outline-light text-dark bg-light ms-2 px-3"  routerLink="/login">ya tengo cuenta</a>
+        </li>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<section class="hero-quienes-somos text-center">
+
+  <h1 class="fw-bold display-3">
+    Quiénes Somos
+  </h1>
+
+  <p class="lead mt-3">
+    Una plataforma creada para facilitar la búsqueda de trabajadores confiables y brindar tranquilidad a quienes necesitan contratar servicios especializados.
+  </p>
+
+</section>
+
+<section class="section-carrusel">
+
+  <div id="carouselEmpresa" class="carousel slide mb-5 carrusel-personalizado">
+
+    <div class="carousel-inner">
+
+       @for (imagen of imagenesCarrusel; track imagen; let i = $index) {
+        <div class="carousel-item" [class.active]="i === 0">
+          <img [src]="imagen" class="d-block w-100" alt="Imagen empresa">
+        </div>
+      }
+
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselEmpresa"
+      data-bs-slide="prev">
+
+      <span class="carousel-control-prev-icon"></span>
+
+    </button>
+
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselEmpresa"
+      data-bs-slide="next">
+
+      <span class="carousel-control-next-icon"></span>
+
+    </button>
+
+  </div>
+
+</section>
+
+<div class="container">
+
+  @for (seccion of secciones; track seccion.titulo) {
+    <section>
+      <h2>{{ seccion.titulo }}</h2>
+
+      @if (seccion.parrafos.length > 0) {
+        @for (parrafo of seccion.parrafos; track parrafo) {
+          <p>{{ parrafo }}</p>
+        }
+      }
+
+      @if (seccion.items.length > 0) {
+        <ul>
+          @for (item of seccion.items; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      }
+    </section>
+  }
+
+</div>
